@@ -9,22 +9,34 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
+import loc.bonacci.aboutme.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+    private val myName: MyName = MyName("Bonacci Bigollo")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+//        setContentView(R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
 
-        val etNickname: EditText = findViewById(R.id.et_nickname)
-        val tvNickname: TextView = findViewById(R.id.tv_nickname)
-        val btnDone: Button = findViewById(R.id.btn_done)
-        btnDone.setOnClickListener {
-            tvNickname.text = etNickname.text
-            tvNickname.visibility = View.VISIBLE
-            etNickname.visibility = View.GONE
-            it.visibility = View.GONE
-            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(it.windowToken, 0)
+        binding.myName = myName
+        binding.btnDone.setOnClickListener {
+            addNickName(it)
         }
+    }
+
+    private fun addNickName(view: View?) {
+        binding.apply {
+//            tvNickname.text = binding.etNickname.text
+            myName?.nickname = etNickname.text.toString()
+            invalidateAll()
+            view?.visibility = View.GONE
+            etNickname.visibility = View.GONE
+            tvNickname.visibility = View.VISIBLE
+        }
+        //Hide the keyboard
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 }
