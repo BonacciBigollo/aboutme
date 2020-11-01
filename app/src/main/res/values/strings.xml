@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">About Me</string>
+    <string name="activity_main.tv_name_text">BonacciBigollo</string>
+    <string name="star_image">Star image</string>
+    <string name="bio_menu_image">Bio menu image</string>
+    <string name="bio">Biography of mine.
+        \n\nHi! My name is Bonacci Bigollo.
+        \nI am beginner Android-developer. I was started learning development more than 3 years ago,
+        \nbut always something happened and stops me continue studying. But now i am ready to start it
+        \nagain and will become the most wanted Android-developer in my region!!!
+        \n\nP.S
+        \nThis name is fake, don\'t like to share it with wide world ;)
+        </string>
+    <string name="btn_done">Done</string>
+    <string name="what_s_your_nickname">What\'s your nickname?</string>
 </resources>
